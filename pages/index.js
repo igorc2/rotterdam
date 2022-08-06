@@ -9,6 +9,9 @@ export default function Home() {
      
       <Head>
         <title>Create Next App</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </Head>
 
       <div className="navbar bg-base-100">
@@ -34,10 +37,8 @@ export default function Home() {
       </div>
 
       
-      <main className={styles.main}>
+      <main className="min-h-screen">
         <TravelForm></TravelForm>
-
-        
       </main>
 
       <footer className={styles.footer}>
