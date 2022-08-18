@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model TripOffering {
+  id                       Int                        @id @default(autoincrement())
+  title                    String
+  departureDate            DateTime?
+  arrivalDate              DateTime?
+  subtitle                 String?
+  price                    Float
+  pictureUrl               String?
+  TripOfferingTripCategory TripOfferingTripCategory[]
+
+  @@map("trip_offering")
+}
+
+model TripCategory {
+  id                       Int                        @id @default(autoincrement())
+  name                     String
+  TripOfferingTripCategory TripOfferingTripCategory[]
+
+  @@map("trip_category")
+}
+
+model TripOfferingTripCategory {
+  id                Int          @id @default(autoincrement())
+  trip_offering_id  Int
+  tripOffering      TripOffering @relation(fields: [trip_offering_id], references: [id])
+  trip_category_id  Int
+  tripCategory      TripCategory @relation(fields: [trip_category_id], references: [id])
+  
+  @@map("trip_offering_trip_category")
+}
