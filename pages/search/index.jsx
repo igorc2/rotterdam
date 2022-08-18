@@ -81,13 +81,13 @@ function Search () {
 
   return (
     <div className="p-6 pt-12 p-fluid min-h-screen bg-screen">
-      <Typography variant="header1" element="h2" className="mb-4 text-center">Encontre</Typography>
-      <div className="field col-12 md:col-4 mb-4">
+      <Typography variant="header1" element="h2" className="mb-4 text-center">Passeios saindo de Belo Horizonte</Typography>
+      {/* <div className="field col-12 md:col-4 mb-4">
         <span className="p-float-label">
           <InputText id="inputtext" value={value1} onChange={(e) => setValue1(e.target.value)} />
           <label htmlFor="inputtext">Origem</label>
         </span>
-      </div>
+      </div> */}
 
       <div className="field col-12 md:col-4 mb-4">
         <span className="p-float-label">

@@ -10,9 +10,12 @@ module.exports = {
         "primary": "#089083",
         "secondary": "#FEA36B",
         "neutral": "#FEA36B",
-        "screen": "#FAFAFA",
+        "screen": "#F5F5F5",
         "wall": "#E5E5E5",
         "alert": "#FF3636"
+      },
+      boxShadow: {
+        "rg": "2px 2px 6px 0 rgb(17 17 17 / 10%)"
       }
     },
   },
@@ -34,6 +37,7 @@ module.exports = {
     ],
   },
   plugins: [
+    require('tailwind-scrollbar-hide'),
     require("daisyui"),
   ],
 }
