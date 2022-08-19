@@ -11,13 +11,16 @@ datasource db {
 }
 
 model TripOffering {
-  id                       Int                        @id @default(autoincrement())
+  id                       Int             @id @default(autoincrement())
   title                    String
-  departureDate            DateTime?
-  arrivalDate              DateTime?
+  description              String?
+  departure_date           DateTime?
+  arrival_date             DateTime?
   subtitle                 String?
   price                    Float
-  pictureUrl               String?
+  picture_url              String?
+  trip_level_id            Int
+  trip_level               TripLevel       @relation(fields: [trip_level_id], references: [id])
   TripOfferingTripCategory TripOfferingTripCategory[]
 
   @@map("trip_offering")
@@ -32,11 +35,19 @@ model TripCategory {
 }
 
 model TripOfferingTripCategory {
-  id                Int          @id @default(autoincrement())
-  trip_offering_id  Int
-  tripOffering      TripOffering @relation(fields: [trip_offering_id], references: [id])
-  trip_category_id  Int
-  tripCategory      TripCategory @relation(fields: [trip_category_id], references: [id])
-  
+  id               Int          @id @default(autoincrement())
+  trip_offering_id Int
+  trip_category_id Int
+  tripOffering     TripOffering @relation(fields: [trip_offering_id], references: [id])
+  tripCategory     TripCategory @relation(fields: [trip_category_id], references: [id])
+
   @@map("trip_offering_trip_category")
+}
+
+model TripLevel {
+  id           Int            @id @default(autoincrement())
+  name         String
+  TripOffering TripOffering[]
+
+  @@map("trip_level")
 }
