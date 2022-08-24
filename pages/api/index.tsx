@@ -5,6 +5,7 @@ import {
   arg,
   asNexusMethod,
   floatArg,
+  intArg,
   makeSchema,
   nonNull,
   nullable,
@@ -17,17 +18,20 @@ import prisma from '../../lib/prisma'
 
 export const GQLDate = asNexusMethod(DateTimeResolver, 'date')
 
+const dateTimeArg = (opts) => arg({ ...opts, type: "DateTime" })
 
 const TripOffering = objectType({
   name: 'TripOffering',
   definition(t) {
     t.int('id')
     t.string('title')
-    t.nullable.string('departureDate')
-    t.nullable.string('arrivalDate')
+    t.string('description')
+    t.nullable.date('departureDate')
+    t.nullable.date('arrivalDate')
     t.nullable.string('subtitle')
     t.float('price')
     t.nullable.string('pictureUrl')
+    t.nullable.int('tripLevelId')
   }
 })
 
@@ -167,21 +171,34 @@ const Mutation = objectType({
       type: 'TripOffering',
       args: {
         title: nonNull(stringArg()),
+        description: stringArg(),
         price: nonNull(floatArg()),
-        departureDate: arg(),
+        departureDate: dateTimeArg({}),
         arrivalDate: stringArg(),
         subtitle: stringArg(),
         pictureUrl: stringArg(),
+        tripLevelId: intArg(),
       },
-      resolve: (_, { title, price, departureDate, arrivalDate, subtitle, pictureUrl }, ctx) => {
+      resolve: (_, {
+        title,
+        description,
+        departureDate,
+        arrivalDate,
+        subtitle,
+        price,
+        pictureUrl,
+        tripLevelId,
+      }, ctx) => {
         return prisma.tripOffering.create({
           data: {
             title,
-            price,
+            description,
             departureDate,
             arrivalDate,
             subtitle,
+            price,
             pictureUrl,
+            tripLevelId,
           },
         })
       },

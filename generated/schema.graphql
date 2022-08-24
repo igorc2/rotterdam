@@ -8,7 +8,7 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 scalar DateTime
 
 type Mutation {
-  createTrip(arrivalDate: String, departureDate: String, pictureUrl: String, price: Float!, subtitle: String, title: String!): TripOffering
+  createTrip(arrivalDate: String, departureDate: DateTime, description: String, pictureUrl: String, price: Float!, subtitle: String, title: String!, tripLevelId: Int): TripOffering
 }
 
 type Query {
@@ -21,11 +21,13 @@ type TripCategory {
 }
 
 type TripOffering {
-  arrivalDate: String
-  departureDate: String
+  arrivalDate: DateTime
+  departureDate: DateTime
+  description: String
   id: Int
   pictureUrl: String
   price: Float
   subtitle: String
   title: String
+  tripLevelId: Int
 }

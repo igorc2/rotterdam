@@ -50,13 +50,15 @@ export interface NexusGenObjects {
     name?: string | null; // String
   }
   TripOffering: { // root type
-    arrivalDate?: string | null; // String
-    departureDate?: string | null; // String
+    arrivalDate?: NexusGenScalars['DateTime'] | null; // DateTime
+    departureDate?: NexusGenScalars['DateTime'] | null; // DateTime
+    description?: string | null; // String
     id?: number | null; // Int
     pictureUrl?: string | null; // String
     price?: number | null; // Float
     subtitle?: string | null; // String
     title?: string | null; // String
+    tripLevelId?: number | null; // Int
   }
 }
 
@@ -82,13 +84,15 @@ export interface NexusGenFieldTypes {
     name: string | null; // String
   }
   TripOffering: { // field return type
-    arrivalDate: string | null; // String
-    departureDate: string | null; // String
+    arrivalDate: NexusGenScalars['DateTime'] | null; // DateTime
+    departureDate: NexusGenScalars['DateTime'] | null; // DateTime
+    description: string | null; // String
     id: number | null; // Int
     pictureUrl: string | null; // String
     price: number | null; // Float
     subtitle: string | null; // String
     title: string | null; // String
+    tripLevelId: number | null; // Int
   }
 }
 
@@ -104,13 +108,15 @@ export interface NexusGenFieldTypeNames {
     name: 'String'
   }
   TripOffering: { // field return type name
-    arrivalDate: 'String'
-    departureDate: 'String'
+    arrivalDate: 'DateTime'
+    departureDate: 'DateTime'
+    description: 'String'
     id: 'Int'
     pictureUrl: 'String'
     price: 'Float'
     subtitle: 'String'
     title: 'String'
+    tripLevelId: 'Int'
   }
 }
 
@@ -118,11 +124,13 @@ export interface NexusGenArgTypes {
   Mutation: {
     createTrip: { // args
       arrivalDate?: string | null; // String
-      departureDate?: string | null; // String
+      departureDate?: NexusGenScalars['DateTime'] | null; // DateTime
+      description?: string | null; // String
       pictureUrl?: string | null; // String
       price: number; // Float!
       subtitle?: string | null; // String
       title: string; // String!
+      tripLevelId?: number | null; // Int
     }
   }
 }

@@ -68,7 +68,7 @@ const variants = {
   
 };
 
-export function Typography ({variant, element, color, children, ...rest}) {
+export function Typography ({variant, element, color = "", children, ...rest}) {
   const Tag = element || 'span';
   return <Tag style={variants[variant]} {...rest}>{children}</Tag>
 }
